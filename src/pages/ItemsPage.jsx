@@ -128,7 +128,7 @@ const ItemsPage = () => {
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr_auto] gap-6 items-start">
           {/* Add/Edit Form */}
           <Card className="border-slate-200 dark:border-slate-700 shadow-lg shadow-slate-200/40 dark:shadow-slate-900/40">
             <CardHeader className="pb-4 border-b border-slate-100 dark:border-slate-700">
@@ -282,6 +282,23 @@ const ItemsPage = () => {
                   ))
                 )}
               </div>
+            </CardContent>
+          </Card>
+
+          {/* 3rd Column: Compact Square Ad Banner (300x250) */}
+          <Card className="border-slate-200 dark:border-slate-700 shadow-lg shadow-slate-200/40 dark:shadow-slate-900/40 overflow-hidden flex flex-col items-center shrink-0 w-fit self-start justify-self-center lg:justify-self-end">
+            <CardHeader className="pb-2 border-b border-slate-100 dark:border-slate-700 w-full px-4 pt-3">
+              <CardTitle className="text-[10px] font-medium text-slate-400 dark:text-slate-500 uppercase tracking-widest text-center">
+                Advertisement
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-3 flex items-center justify-center">
+              <AdBanner
+                zoneKey="98af749660fe6c7cd3cb319af5e5a460"
+                width={300}
+                height={250}
+                slotsCount={1}
+              />
             </CardContent>
           </Card>
         </div>
