@@ -92,52 +92,57 @@ const ItemDetails = ({ items, handleItemChange, addItem, removeItem }) => {
         </Dialog>
       </div>
       {items.map((item, index) => (
-        <div key={index} className="mb-4 relative">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-2">
-            <FloatingLabelInput
-              id={`itemName${index}`}
-              label="Name"
-              value={item.name}
-              onChange={(e) => handleItemChange(index, 'name', e.target.value)}
-            />
-            <FloatingLabelInput
-              id={`itemQuantity${index}`}
-              label={`Quantity${item.unit ? ` (${item.unit})` : ''}`}
-              type="number"
-              value={item.quantity}
-              onChange={(e) => handleItemChange(index, 'quantity', parseFloat(e.target.value))}
-            />
-            <FloatingLabelInput
-              id={`itemAmount${index}`}
-              label="Amount (Rs.)"
-              type="number"
-              value={item.amount}
-              onChange={(e) => handleItemChange(index, 'amount', parseFloat(e.target.value))}
-            />
-            <FloatingLabelInput
-              id={`itemTotal${index}`}
-              label="Total (Rs.)"
-              type="number"
-              value={(item.quantity * item.amount).toFixed(2)}
-              disabled
-            />
+        <div key={index} className="mb-4 p-4 border rounded-xl bg-slate-50/50 dark:bg-slate-800/40 border-slate-200 dark:border-slate-700 space-y-3">
+          <div className="flex items-center justify-between gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 flex-1">
+              <FloatingLabelInput
+                id={`itemName${index}`}
+                label="Name"
+                value={item.name || ''}
+                onChange={(e) => handleItemChange(index, 'name', e.target.value)}
+              />
+              <FloatingLabelInput
+                id={`itemQuantity${index}`}
+                label={`Quantity${item.unit ? ` (${item.unit})` : ''}`}
+                type="number"
+                value={item.quantity ?? ''}
+                onChange={(e) => handleItemChange(index, 'quantity', e.target.value === '' ? '' : parseFloat(e.target.value))}
+              />
+              <FloatingLabelInput
+                id={`itemAmount${index}`}
+                label="Amount (Rs.)"
+                type="number"
+                value={item.amount ?? ''}
+                onChange={(e) => handleItemChange(index, 'amount', e.target.value === '' ? '' : parseFloat(e.target.value))}
+              />
+              <FloatingLabelInput
+                id={`itemTotal${index}`}
+                label="Total (Rs.)"
+                type="number"
+                value={item.total !== undefined && item.total !== null ? item.total : (parseFloat(item.quantity || 0) * parseFloat(item.amount || 0)).toFixed(2)}
+                onChange={(e) => handleItemChange(index, 'total', e.target.value === '' ? '' : parseFloat(e.target.value))}
+              />
+            </div>
+
+            {items.length > 1 && (
+              <Button
+                variant="destructive"
+                size="icon"
+                className="shrink-0 h-10 w-10 mt-1 self-center"
+                onClick={() => removeItem(index)}
+                title="Delete item"
+              >
+                <Trash2 className="h-4 w-4" />
+              </Button>
+            )}
           </div>
+
           <FloatingLabelInput
             id={`itemDescription${index}`}
             label="Description"
-            value={item.description}
+            value={item.description || ''}
             onChange={(e) => handleItemChange(index, 'description', e.target.value)}
           />
-          {index > 0 && (
-            <Button
-              variant="destructive"
-              size="icon"
-              className="absolute top-0 right-0 mt-2"
-              onClick={() => removeItem(index)}
-            >
-              <Trash2 className="h-4 w-4" />
-            </Button>
-          )}
         </div>
       ))}
       <Button type="button" onClick={addItem} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">

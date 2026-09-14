@@ -151,9 +151,13 @@ const Index = () => {
   const handleItemChange = (index, field, value) => {
     const newItems = [...items];
     newItems[index][field] = value;
+    
     if (field === "quantity" || field === "amount") {
-      newItems[index].total = newItems[index].quantity * newItems[index].amount;
+      const q = parseFloat(newItems[index].quantity) || 0;
+      const a = parseFloat(newItems[index].amount) || 0;
+      newItems[index].total = parseFloat((q * a).toFixed(2));
     }
+    
     setItems(newItems);
     updateTotals();
   };
@@ -171,10 +175,14 @@ const Index = () => {
   };
 
   const calculateSubTotal = () => {
-    const calculatedSubTotal = items.reduce(
-      (sum, item) => sum + item.quantity * item.amount,
-      0
-    );
+    const calculatedSubTotal = items.reduce((sum, item) => {
+      const qty = parseFloat(item.quantity) || 0;
+      const amt = parseFloat(item.amount) || 0;
+      const val = item.total !== undefined && item.total !== null && !isNaN(parseFloat(item.total))
+        ? parseFloat(item.total)
+        : (qty * amt);
+      return sum + val;
+    }, 0);
     setSubTotal(calculatedSubTotal.toFixed(2));
     return calculatedSubTotal;
   };
