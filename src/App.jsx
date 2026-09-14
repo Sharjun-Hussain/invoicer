@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { navItems } from "./nav-items";
 import Preloader from "./components/Preloader";
+import AdBlockModal from "./components/AdBlockModal";
 import TemplatePage from "./pages/TemplatePage";
 import ReceiptPage from "./pages/ReceiptPage";
 import Index from "./pages/Index";
@@ -15,6 +16,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Preloader />
+      <AdBlockModal />
       <BrowserRouter>
         <Routes>
           {navItems.map(({ to, page }) => (
