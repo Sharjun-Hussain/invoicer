@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://invoicer.inzeedo.com/sitemap.xml
+Sitemap: https://invoicer.inzeedo.lk/sitemap.xml

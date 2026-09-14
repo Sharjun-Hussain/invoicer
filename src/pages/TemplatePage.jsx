@@ -55,7 +55,7 @@ const TemplatePage = () => {
         await generatePDF(formData, currentTemplate);
 
         // 2. SEND invoice data to your serverless backend
-        await fetch("https://invoicerapi.inzeedo.com/api/download", {
+        await fetch("https://invoicerapi.inzeedo.lk/api/download", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
