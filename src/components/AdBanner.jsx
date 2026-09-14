@@ -59,9 +59,9 @@ const AdBanner = ({
   width = 320, 
   height = 50, 
   format = 'iframe',
-  slotsCount = 8
+  slotsCount = 2 // Changed to 2 ad banners
 }) => {
-  // Render array of slots (defaults to 8 so both rows fill completely on desktop)
+  // Render exactly 2 ad slots (extra slots commented out as requested)
   const slots = Array.from({ length: slotsCount });
 
   return (
@@ -72,11 +72,20 @@ const AdBanner = ({
         </span>
 
         <div className="flex items-center justify-center flex-wrap gap-3 sm:gap-4 w-full">
+          {/* Active 2 Ad Banners */}
           {slots.map((_, index) => (
             <div key={index} className="flex items-center justify-center shrink-0">
               <SingleAdIframe zoneKey={zoneKey} width={width} height={height} format={format} />
             </div>
           ))}
+
+          {/* 
+            Extra Ad Slots (Commented out):
+            <SingleAdIframe zoneKey={zoneKey} width={width} height={height} format={format} />
+            <SingleAdIframe zoneKey={zoneKey} width={width} height={height} format={format} />
+            <SingleAdIframe zoneKey={zoneKey} width={width} height={height} format={format} />
+            <SingleAdIframe zoneKey={zoneKey} width={width} height={height} format={format} />
+          */}
         </div>
       </div>
     </div>
