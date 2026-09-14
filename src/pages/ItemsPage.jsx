@@ -22,6 +22,7 @@ const ItemsPage = () => {
   });
 
   useEffect(() => {
+    document.title = "Manage Invoice Items & Pricing | Inzeedo";
     loadItems();
   }, []);
 

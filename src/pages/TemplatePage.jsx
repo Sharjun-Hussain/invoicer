@@ -18,6 +18,7 @@ const TemplatePage = () => {
   const [showRewardedAd, setShowRewardedAd] = useState(false);
 
   useEffect(() => {
+    document.title = "Choose Invoice Templates & Export PDF | Inzeedo";
     if (location.state && location.state.formData) {
       setFormData(location.state.formData);
       setCurrentTemplate(location.state.selectedTemplate || 1);

@@ -103,6 +103,7 @@ const Index = () => {
       }));
     }
 
+    document.title = "Free Online Invoice Generator & Receipt Maker | Inzeedo";
     // Load company settings
     const savedSettings = localStorage.getItem("companySettings");
     if (savedSettings) {
