@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { PlayCircle, Download, CheckCircle2, Sparkles, ExternalLink, X, Clock } from 'lucide-react';
+import { PlayCircle, Download, CheckCircle2, Sparkles, ExternalLink, X } from 'lucide-react';
+import { getRandomDirectLink } from '../utils/adsterraDirectLink';
 
 const SingleAdFrame = ({ zoneKey = 'b4b3e9b74484b109eeffa7eaa703707f', width = 320, height = 50 }) => {
   const iframeRef = useRef(null);
@@ -59,7 +60,6 @@ const RewardedAdModal = ({
   isOpen,
   onClose,
   onComplete,
-  adDirectLink = 'https://www.profitableratecpmnetwork.com/e6/88/7a/e6887acc7924d0673aeaa8d9ec28756e.js',
   countdownSeconds = 10,
 }) => {
   const [hasClickedAd, setHasClickedAd] = useState(false);
@@ -94,8 +94,9 @@ const RewardedAdModal = ({
 
   const handleAdClick = () => {
     setHasClickedAd(true);
-    if (adDirectLink) {
-      window.open(adDirectLink, '_blank');
+    const targetUrl = getRandomDirectLink();
+    if (targetUrl) {
+      window.open(targetUrl, '_blank', 'noopener,noreferrer');
     }
   };
 

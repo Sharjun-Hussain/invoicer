@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { navItems } from "./nav-items";
 import Preloader from "./components/Preloader";
 import AdBlockModal from "./components/AdBlockModal";
+import GlobalDirectLinkAd from "./components/GlobalDirectLinkAd";
 import TemplatePage from "./pages/TemplatePage";
 import ReceiptPage from "./pages/ReceiptPage";
 import Index from "./pages/Index";
@@ -17,6 +18,7 @@ const App = () => (
       <Toaster />
       <Preloader />
       <AdBlockModal />
+      <GlobalDirectLinkAd />
       <BrowserRouter>
         <Routes>
           {navItems.map(({ to, page }) => (
