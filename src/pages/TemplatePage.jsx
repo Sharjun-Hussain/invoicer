@@ -4,6 +4,7 @@ import { ArrowLeft, Loader2, Home, Check, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import InvoiceTemplate from "../components/InvoiceTemplate";
 import AdBanner from "../components/AdBanner";
+import RewardedAdModal from "../components/RewardedAdModal";
 import { generatePDF } from "../utils/pdfGenerator";
 import { templates } from "../utils/templateRegistry";
 import { cn } from "@/lib/utils";
@@ -14,6 +15,7 @@ const TemplatePage = () => {
   const [formData, setFormData] = useState(null);
   const [currentTemplate, setCurrentTemplate] = useState(1);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [showRewardedAd, setShowRewardedAd] = useState(false);
 
   useEffect(() => {
     if (location.state && location.state.formData) {
@@ -37,15 +39,21 @@ const TemplatePage = () => {
     }
   };
 
+  const handleDownloadClick = () => {
+    if (formData && !isDownloading) {
+      setShowRewardedAd(true);
+    }
+  };
+
   const handleDownloadPDF = async () => {
     if (formData && !isDownloading) {
       setIsDownloading(true);
 
       try {
-        // 1? Generate PDF in frontend
+        // 1. Generate PDF in frontend
         await generatePDF(formData, currentTemplate);
 
-        // 2? SEND invoice data to your serverless backend
+        // 2. SEND invoice data to your serverless backend
         await fetch("https://invoicerapi.inzeedo.com/api/download", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -100,7 +108,7 @@ const TemplatePage = () => {
             </Button>
             <Button
               size="sm"
-              onClick={handleDownloadPDF}
+              onClick={handleDownloadClick}
               disabled={isDownloading}
               className="shadow-lg shadow-blue-600/20 transition-all"
             >
@@ -191,7 +199,7 @@ const TemplatePage = () => {
         <div className="fixed bottom-6 right-6 z-[100] w-64 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white/95 dark:bg-slate-800/95 backdrop-blur-md p-4 shadow-2xl shadow-slate-900/20 dark:shadow-black/40">
           <p className="text-sm font-medium text-slate-900 dark:text-white mb-2">Ready to download?</p>
           <Button
-            onClick={handleDownloadPDF}
+            onClick={handleDownloadClick}
             disabled={isDownloading}
             className="w-full shadow-lg shadow-blue-600/20 transition-all"
           >
@@ -210,6 +218,13 @@ const TemplatePage = () => {
             Currently using: <span className="font-semibold text-slate-600 dark:text-slate-300">{templates[currentTemplate - 1]?.name}</span>
           </p>
         </div>
+
+        {/* Rewarded Video / Interstitial Ad Modal */}
+        <RewardedAdModal
+          isOpen={showRewardedAd}
+          onClose={() => setShowRewardedAd(false)}
+          onComplete={handleDownloadPDF}
+        />
 
         <AdBanner />
         <div className="mt-12 pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-sm">
