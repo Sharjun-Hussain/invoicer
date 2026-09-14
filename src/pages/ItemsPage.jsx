@@ -5,6 +5,7 @@ import FloatingLabelInput from '../components/FloatingLabelInput';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import AdBanner from '../components/AdBanner';
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
@@ -285,6 +286,7 @@ const ItemsPage = () => {
           </Card>
         </div>
 
+        <AdBanner />
         <div className="mt-12 pt-6 border-t border-slate-200 dark:border-slate-800 text-center text-sm text-slate-400">
           <p>Developed By: Inzeedo (PVT) Ltd. | Your Trusted Partner for Specialized Software Solutions</p>
         </div>

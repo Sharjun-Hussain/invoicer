@@ -7,6 +7,7 @@ import ItemDetails from "../components/ItemDetails";
 import { templates } from "../utils/templateRegistry";
 import { FiEdit, FiFileText, FiTrash2 } from "react-icons/fi";
 import { RefreshCw, Package, Settings } from "lucide-react";
+import AdBanner from "../components/AdBanner";
 import { Button } from "@/components/ui/button";
 import { set, sub } from "date-fns";
 
@@ -512,6 +513,7 @@ const Index = () => {
           </div>
         </div>
       </div>
+      <AdBanner />
       <div className="mt-8 pt-4 border-t text-center text-sm text-gray-600">
         <p>
           Developed By: Inzeedo (PVT) Ltd. | Your Trusted Partner for

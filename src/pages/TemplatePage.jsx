@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft, Loader2, Home, Check, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import InvoiceTemplate from "../components/InvoiceTemplate";
+import AdBanner from "../components/AdBanner";
 import { generatePDF } from "../utils/pdfGenerator";
 import { templates } from "../utils/templateRegistry";
 import { cn } from "@/lib/utils";
@@ -210,6 +211,7 @@ const TemplatePage = () => {
           </p>
         </div>
 
+        <AdBanner />
         <div className="mt-12 pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-sm">
           <p className="text-slate-400">
             Developed By: Inzeedo (PVT) Ltd. | Your Trusted Partner for Specialized Software Solutions
