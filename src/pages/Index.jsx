@@ -523,12 +523,15 @@ const Index = () => {
         </div>
       </div>
       <AdBanner />
-      <div className="mt-8 pt-4 border-t text-center text-sm text-gray-600">
+      <div className="mt-8 pt-4 border-t border-slate-200 dark:border-slate-800 text-center text-xs text-slate-500 space-y-2">
         <p>
-          Developed By: Inzeedo (PVT) Ltd. | Your Trusted Partner for
-          Specialized Software Solutions
+          Developed By: Inzeedo (PVT) Ltd. | Your Trusted Partner for Specialized Software Solutions | Contact: +94785706441
         </p>
-        <p>Contact us for customized solutions: +94785706441</p>
+        <div className="flex items-center justify-center gap-4">
+          <button onClick={() => navigate('/privacy')} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Privacy Policy</button>
+          <span>•</span>
+          <button onClick={() => navigate('/terms')} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Terms of Service</button>
+        </div>
       </div>
     </div>
   );

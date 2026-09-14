@@ -228,13 +228,15 @@ const TemplatePage = () => {
         />
 
         <AdBanner />
-        <div className="mt-12 pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-sm">
-          <p className="text-slate-400">
+        <div className="mt-12 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
+          <p>
             Developed By: Inzeedo (PVT) Ltd. | Your Trusted Partner for Specialized Software Solutions
           </p>
-          <Button variant="ghost" size="sm" onClick={handleBack} className="text-slate-500 hover:text-slate-900 dark:hover:text-white">
-            <ArrowLeft className="mr-1.5 h-4 w-4" /> Back to Home
-          </Button>
+          <div className="flex items-center gap-4">
+            <button onClick={() => navigate('/privacy')} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Privacy Policy</button>
+            <span>•</span>
+            <button onClick={() => navigate('/terms')} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Terms of Service</button>
+          </div>
         </div>
       </div>
     </div>
